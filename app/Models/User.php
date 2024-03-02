@@ -1,0 +1,78 @@
+<?php
+
+namespace App\Models;
+
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+
+class User extends Authenticatable
+{
+    use HasApiTokens, HasFactory, Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'username',
+        'nik',
+        'nama',
+        'email',
+        'password',
+        'nohp',
+        'jenis_kelamin',
+        'alamat',
+        'tgl_lahir',
+        'profile',
+        'level'
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+    public function role(){
+        return $this->hasMany(Role::class,'id_role','id');
+    }
+    public function role_menu(){
+        return $this->hasMany(Role::class,'id_user','id');
+    }
+
+    public function buku(){
+        return $this->hasMany(Buku::class,'id_buku','id');
+    }
+
+    public function peminjaman(){
+        return $this->hasMany(Peminjaman::class,'id_peminjaman','id');
+    }
+
+    public function koleksi(){
+        return $this->hasMany(Koleksi::class,'id_koleksi','id');
+    }
+
+    public function ulasan(){
+        return $this->hasMany(ulasan::class,'id_ulsan','id');
+    }
+
+
+}
