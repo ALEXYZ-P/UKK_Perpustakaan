@@ -31,6 +31,7 @@ class PeminjamaController extends Controller
     public function create()
     {
         $buku = Buku::all();
+        $user = User::all();
 
         $data1 = User::findOrFail(Auth::user()->id);
         $role = $data1->role_menu;

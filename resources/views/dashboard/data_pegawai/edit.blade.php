@@ -43,7 +43,7 @@
                             <input type="text" class="form-control" name="username" value="{{ $data->username }}">
 
                             <label for="">NIK</label>
-                            <input type="text" class="form-control" name="nik" id="" value="{{ $data->nik }}">
+                            <input type="text" class="form-control" name="nik" id="" value="{{ $data->nik }}" minlength="15" minlength="16">
 
                             <label for="">Nama</label>
                             <input type="text" class="form-control" name="nama" id="" value="{{ $data->nama }}">
@@ -52,13 +52,13 @@
                             <input type="email" class="form-control" name="email" id="" value="{{ $data->email }}">
 
                             <label for="">Password</label>
-                            <input type="password" class="form-control" name="password" id="" value="{{ $data->password }}">
+                            <input type="password" class="form-control" name="password" id="" value="{{ $data->password }}" minlength="8">
 
                             <label for="">Alamat</label>
                             <input type="text" class="form-control" name="alamat" id="" value="{{ $data->alamat }}">
 
                             <label for="">No Telepon</label>
-                            <input type="text" class="form-control" name="nohp" id="" value="{{ $data->nohp }}">
+                            <input type="text" class="form-control" name="nohp" id="" value="{{ $data->nohp }}" minlength="9" maxlength="15">
 
                             <label for="">Tanggal Lahir</label>
                             <input type="date" class="form-control" name="tgl_lahir" id="" value="{{ $data->tgl_lahir }}">

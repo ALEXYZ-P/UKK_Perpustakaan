@@ -43,6 +43,9 @@
                             <label for="">Buku</label>
                             <select name="id_buku" id="buku" class="form-control">
                                 <option value="">Judul Buku</option>
+                                {{-- @foreach ($buku as $i)
+                                    <option value="{{ $i->id }}">{{ $i->judul }}</option>
+                                @endforeach --}}
                                 @foreach ($buku as $i)
                                     <option value="{{ $i->id == $data->id_buku  ? $data->id_buku : $i->id}}"
                                     {{ $i->id == $data->id_buku  ? 'selected' : '' }} >
@@ -54,9 +57,9 @@
                             <select name="id_kategori" id="kategori" class="form-control">
                                 <option value="">Kategori</option>
                                 @foreach ($kategori as $i)
-                                <option value="{{ $i->id == $data2->id_kategori  ? $data2->id_kategori : $i->id}}"
-                                    {{ $i->id == $data2->id_kategori  ? 'selected' : '' }} >
-                                    {{ $i->id == $data2->id_kategori  ? $i->nama : $i->nama  }} </option>
+                                <option value="{{ $i->id == $data->id_kategori  ? $data->id_kategori : $i->id}}"
+                                    {{ $i->id == $data->id_kategori  ? 'selected' : '' }} >
+                                    {{ $i->id == $data->id_kategori  ? $i->nama : $i->nama  }} </option>
                                 @endforeach
                             </select>
                             <button class="btn btn-success mt-3" type="submit">Simpan</button>

@@ -1,9 +1,9 @@
 <!-- Main Footer -->
 <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    <strong> &copy; 2014 <a href="#">ALibrary - e-Library</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.2.0
+      {{-- <b>Version</b> 3.2.0 --}}
     </div>
   </footer>
 </div>
@@ -43,6 +43,24 @@
 <script src="{{ asset ('adminlte') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- Select2 -->
 <script src="{{ asset ('adminlte') }}/plugins/select2/js/select2.full.min.js"></script>
+
+<!-- Mengimpor library JavaScript Bootstrap -->
+{{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> --}} <!--solusi data table hilang-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Mengimpor library JavaScript Bootstrap Datepicker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<!-- Library QR Code -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode"></script>
+
+<script>
+    $(document).ready(function(){
+      $('#datepicker').datepicker({
+        format: "mm-yyyy",
+        minViewMode: 1
+      });
+    });
+    </script>
 
 <script>
     $(function () {

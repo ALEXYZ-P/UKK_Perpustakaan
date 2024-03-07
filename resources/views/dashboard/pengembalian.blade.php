@@ -43,7 +43,7 @@
                         @endif
                         <div class="card-body">
 
-                            <a href="{{ route('peminjaman.create') }}" class="btn btn-warning mb-3" type="button">Pinjam Buku</a>
+                            {{-- <a href="{{ route('peminjaman.create') }}" class="btn btn-warning mb-3" type="button">Pinjam Buku</a> --}}
 
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>

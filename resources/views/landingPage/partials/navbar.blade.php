@@ -112,16 +112,16 @@
                                         <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                     </div>
                                     <div class="product-extra-link2">
-                                        <button type="submit" class="button button-add-to-cart">Add to cart</button>
+                                        {{-- <button type="submit" class="button button-add-to-cart">Add to cart</button> --}}
                                         <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
                                     </div>
                                 </div>
-                                <ul class="product-meta font-xs color-grey mt-50">
+                                {{-- <ul class="product-meta font-xs color-grey mt-50">
                                     <li class="mb-5">SKU: <a href="#">FWM15VKT</a></li>
                                     <li class="mb-5">Tags: <a href="#" rel="tag">Cloth</a>, <a href="#" rel="tag">Women</a>, <a href="#" rel="tag">Dress</a> </li>
                                     <li>Availability:<span class="in-stock text-success ml-5">8 Items In Stock</span></li>
-                                </ul>
+                                </ul> --}}
                             </div>
                             <!-- Detail Info -->
                         </div>
@@ -137,8 +137,8 @@
                     <div class="col-xl-3 col-lg-4">
                         <div class="header-info">
                             <ul>
-                                <li><i class="fi-rs-smartphone"></i> <a href="#">(+01) - 2345 - 6789</a></li>
-                                <li><i class="fi-rs-marker"></i><a  href="page-contact.html">Our location</a></li>
+                                {{-- <li><i class="fi-rs-smartphone"></i> <a href="#">(+01) - 2345 - 6789</a></li>
+                                <li><i class="fi-rs-marker"></i><a  href="page-contact.html">Our location</a></li> --}}
                             </ul>
                         </div>
                     </div>
@@ -176,7 +176,7 @@
             <div class="container">
                 <div class="header-wrap">
                     <div class="logo logo-width-1">
-                        <a href="index.html"><img src="{{ asset('evara') }}/assets/imgs/theme/logo.svg" alt="logo"></a>
+                        <a href="index.html"><img src="{{ asset('evara') }}/assets/imgs/theme/alibraryLogo.png" alt="logo"></a>
                     </div>
                     <div class="header-right">
                         <div class="search-style-2">
@@ -208,7 +208,7 @@
                                 <div class="header-action-icon-2">
                                     <a class="mini-cart-icon" href="{{ route('koleksi.show', $user->id)}}">
                                         <img alt="Evara" src="{{ asset('evara') }}/assets/imgs/theme/icons/icon-heart.svg">
-                                        <span class="pro-count blue">2</span>
+                                        {{-- <span class="pro-count blue"></span> --}}
                                     </a>
                                     {{-- <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                         <ul>
@@ -258,7 +258,7 @@
             <div class="container">
                 <div class="header-wrap header-space-between position-relative">
                     <div class="logo logo-width-1 d-block d-lg-none">
-                        <a href="index.html"><img src="{{ asset('evara') }}/assets/imgs/theme/logo.svg" alt="logo"></a>
+                        <a href="index.html"><img src="{{ asset('evara') }}/assets/imgs/theme/alibraryLogo.png" alt="logo"></a>
                     </div>
                     <div class="header-nav d-none d-lg-flex">
                         <div class="main-categori-wrap d-none d-lg-block">
@@ -402,7 +402,7 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li class="mega-menu-col col-lg-5">
+                                                {{-- <li class="mega-menu-col col-lg-5">
                                                     <div class="header-banner2">
                                                         <img src="{{ asset('evara') }}/assets/imgs/banner/menu-banner-5.jpg" alt="menu_banner1">
                                                         <div class="banne_info">
@@ -419,7 +419,7 @@
                                                             <a href="#">Shop now</a>
                                                         </div>
                                                     </div>
-                                                </li>
+                                                </li> --}}
                                             </ul>
                                         </div>
                                     </li>
@@ -445,18 +445,22 @@
                         <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block">
                             <nav>
                                 <ul>
-                                    <li><a class="active" href="#">Home <i class="fi-rs-angle-down"></i></a>
-                                        <ul class="sub-menu">
+                                    <li><a href="{{ route('landingPage.index') }}" class="{{ Route::is('landingPage.index') ? 'active' : ''}}" >Home {{-- <i class="fi-rs-angle-down"></i>--}}</a>
+                                        {{-- <ul class="sub-menu">
                                             <li><a href="{{ route('profile.show', $user->id) }}">Profile</a></li>
-                                            {{-- <li><a href="index-2.html">Home 2</a></li>
+                                            <li><a href="index-2.html">Home 2</a></li>
                                             <li><a href="index-3.html">Home 3</a></li>
-                                            <li><a href="index-4.html">Home 4</a></li> --}}
-                                        </ul>
+                                            <li><a href="index-4.html">Home 4</a></li>
+                                        </ul>--}}
                                     </li>
+                                    <li>
+                                        <a href="{{ route('profile.show', $user->id) }}" class="{{ Route::is('profile.show') ? 'active' : ''}}" >Profile </a>
+                                    </li>
+
                                     <li>
                                         <a href="page-about.html">About</a>
                                     </li>
-                                    <li><a href="shop-grid-right.html">Shop <i class="fi-rs-angle-down"></i></a>
+                                    {{-- <li><a href="shop-grid-right.html">Shop <i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="shop-grid-right.html">Shop Grid – Right Sidebar</a></li>
                                             <li><a href="shop-grid-left.html">Shop Grid – Left Sidebar</a></li>
@@ -476,7 +480,7 @@
                                             <li><a href="shop-checkout.html">Shop – Checkout</a></li>
                                             <li><a href="shop-compare.html">Shop – Compare</a></li>
                                         </ul>
-                                    </li>
+                                    </li> --}}
                                     {{-- <li class="position-static"><a href="#">Mega menu <i class="fi-rs-angle-down"></i></a>
                                         <ul class="mega-menu">
                                             <li class="sub-mega-menu sub-mega-menu-width-22">
@@ -534,7 +538,7 @@
                                             </li>
                                         </ul>
                                     </li> --}}
-                                    <li><a href="blog-category-grid.html">Blog <i class="fi-rs-angle-down"></i></a>
+                                    {{-- <li><a href="blog-category-grid.html">Blog <i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="blog-category-grid.html">Blog Category Grid</a></li>
                                             <li><a href="blog-category-list.html">Blog Category List</a></li>
@@ -548,8 +552,8 @@
                                                 </ul>
                                             </li>
                                         </ul>
-                                    </li>
-                                    <li><a href="#">Pages <i class="fi-rs-angle-down"></i></a>
+                                    </li> --}}
+                                    {{-- <li><a href="#">Pages <i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="page-about.html">About Us</a></li>
                                             <li><a href="page-contact.html">Contact</a></li>
@@ -560,7 +564,7 @@
                                             <li><a href="page-terms.html">Terms of Service</a></li>
                                             <li><a href="page-404.html">404 Page</a></li>
                                         </ul>
-                                    </li>
+                                    </li> --}}
                                     <li>
                                         <a href="page-contact.html">Contact</a>
                                     </li>
@@ -569,9 +573,9 @@
                         </div>
                     </div>
                     <div class="hotline d-none d-lg-block">
-                        <p><i class="fi-rs-headset"></i><span>Hotline</span> 1900 - 888 </p>
+                        {{-- <p><i class="fi-rs-headset"></i><span>Hotline</span> 1900 - 888 </p> --}}
                     </div>
-                    <p class="mobile-promotion">Happy <span class="text-brand">Mother's Day</span>. Big Sale Up to 40%</p>
+                    {{-- <p class="mobile-promotion">Happy <span class="text-brand">Mother's Day</span>. Big Sale Up to 40%</p> --}}
                     <div class="header-action-right d-block d-lg-none">
                         <div class="header-action-2">
                             {{-- <div class="header-action-icon-2">
@@ -583,7 +587,7 @@
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="{{ route('koleksi.show', $user->id )}}">
                                     <img alt="Evara" src="{{ asset('evara') }}/assets/imgs/theme/icons/icon-heart.svg">
-                                    <span class="pro-count white">2</span>
+                                    {{-- <span class="pro-count white"></span> --}}
                                 </a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                     <ul>
@@ -678,15 +682,15 @@
                     <!-- mobile menu start -->
                     <nav>
                         <ul class="mobile-menu">
-                            <li class="menu-item-has-children"><span class="menu-expand"></span><a href="index.html">Home</a>
-                                <ul class="dropdown">
+                            <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Home</a>
+                                {{-- <ul class="dropdown">
                                     <li><a href="index.html">Home 1</a></li>
                                     <li><a href="index-2.html">Home 2</a></li>
                                     <li><a href="index-3.html">Home 3</a></li>
                                     <li><a href="index-4.html">Home 4</a></li>
-                                </ul>
+                                </ul> --}}
                             </li>
-                            <li class="menu-item-has-children"><span class="menu-expand"></span><a href="shop-grid-right.html">shop</a>
+                            {{-- <li class="menu-item-has-children"><span class="menu-expand"></span><a href="shop-grid-right.html">shop</a>
                                 <ul class="dropdown">
                                     <li><a href="shop-grid-right.html">Shop Grid – Right Sidebar</a></li>
                                     <li><a href="shop-grid-left.html">Shop Grid – Left Sidebar</a></li>
@@ -706,7 +710,7 @@
                                     <li><a href="shop-checkout.html">Shop – Checkout</a></li>
                                     <li><a href="shop-compare.html">Shop – Compare</a></li>
                                 </ul>
-                            </li>
+                            </li> --}}
                             {{-- <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Mega menu</a>
                                 <ul class="dropdown">
                                     <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Women's Fashion</a>
@@ -735,7 +739,7 @@
                                     </li>
                                 </ul>
                             </li> --}}
-                            <li class="menu-item-has-children"><span class="menu-expand"></span><a href="blog-category-fullwidth.html">Blog</a>
+                            {{-- <li class="menu-item-has-children"><span class="menu-expand"></span><a href="blog-category-fullwidth.html">Blog</a>
                                 <ul class="dropdown">
                                     <li><a href="blog-category-grid.html">Blog Category Grid</a></li>
                                     <li><a href="blog-category-list.html">Blog Category List</a></li>
@@ -749,8 +753,8 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </li>
-                            <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Pages</a>
+                            </li> --}}
+                            {{-- <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Pages</a>
                                 <ul class="dropdown">
                                     <li><a href="page-about.html">About Us</a></li>
                                     <li><a href="page-contact.html">Contact</a></li>
@@ -761,15 +765,15 @@
                                     <li><a href="page-terms.html">Terms of Service</a></li>
                                     <li><a href="page-404.html">404 Page</a></li>
                                 </ul>
-                            </li>
-                            <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Language</a>
+                            </li> --}}
+                            {{-- <li class="menu-item-has-children"><span class="menu-expand"></span><a href="#">Language</a>
                                 <ul class="dropdown">
                                     <li><a href="#">English</a></li>
                                     <li><a href="#">French</a></li>
                                     <li><a href="#">German</a></li>
                                     <li><a href="#">Spanish</a></li>
                                 </ul>
-                            </li>
+                            </li> --}}
                         </ul>
                     </nav>
                     <!-- mobile menu end -->
@@ -781,9 +785,9 @@
                     <div class="single-mobile-header-info">
                         <a href="{{route('login')}}">Log In / Sign Up </a>
                     </div>
-                    <div class="single-mobile-header-info">
+                    {{-- <div class="single-mobile-header-info">
                         <a href="#">(+01) - 2345 - 6789 </a>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="mobile-social-icon">
                     <h5 class="mb-15 text-grey-4">Follow Us</h5>

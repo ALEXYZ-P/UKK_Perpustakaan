@@ -42,7 +42,7 @@
                             </div>
                         @endif
                         <div class="card-body">
-                            <a href="{{ route('user.create') }}" class="btn btn-warning mb-3" type="button">Daftar
+                            <a href="{{ route('member.create') }}" class="btn btn-warning mb-3" type="button">Daftar
                                 Pegawai</a>
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
@@ -63,10 +63,10 @@
                                             <td>{{ $i->email }} </td>
                                             <td>{{ $i->nama }} </td>
                                             <td>
-                                                <a href="{{ route('user.edit', $i->id) }}" class="btn btn-warning mb-2"
+                                                <a href="{{ route('member.edit', $i->id) }}" class="btn btn-warning mb-2"
                                                     type="button">Edit</a>
                                                 <!-- Tombol Delete -->
-                                                <form method="POST" action="{{ route('user.destroy', $i->id) }}">
+                                                <form method="POST" action="{{ route('member.destroy', $i->id) }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger mb-2">Delete</button>

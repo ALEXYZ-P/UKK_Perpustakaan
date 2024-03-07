@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
+use App\Models\Koleksi;
+use App\Models\Peminjaman;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -12,10 +16,30 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $data = User::findOrFail(1);
-        $role = $data->role_menu;
+        $user = User::count();
+        $peminjaman = Peminjaman::count();
+        $buku = Buku::count();
+        $like = Koleksi::count();
 
-        return view('dashboard.dashboard',['data' => $data, 'role_menu'=> $role]);
+        $totalUser = User::where('level', 'Member')->count(); // Corrected to count users with level 'Member'
+        $totalDipinjam = Peminjaman::where('status', 'DIPINJAM')->count(); // Corrected to count borrowed books
+        // Uncomment and correct if needed:
+        // $totalBatal = Penjualan::where('status', '!=', 'bayar')->sum('total_harga');
+        $stokBuku = Buku::sum('stok');
+
+        $role = Auth::user()->role_menu; // Retrieve role_menu directly
+
+        return view('dashboard.dashboard', [
+            'user' => $user,
+            'peminjaman' => $peminjaman,
+            'buku' => $buku,
+            'like' => $like,
+            'totalUser' => $totalUser,
+            'totalDipinjam' => $totalDipinjam,
+            'stokBuku' => $stokBuku,
+            'role_menu' => $role,
+        ]);
+
     }
 
     /**

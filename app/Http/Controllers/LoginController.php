@@ -106,7 +106,32 @@ class LoginController extends Controller
     {
         Auth::logout();
 
-        return redirect('/login');
+        return redirect('/');
+    }
+
+    public function reset(Request $request)
+    {
+        $email = $request->input('email');
+        $user = User::where('email','=',$email);
+
+        $password = $request->input('password');
+        $repassword = $request->input('retypepassword');
+        if($user->count() > 0 ){
+            if($password == $repassword)
+            {
+                $password = Hash::make($password);
+                $user->update(['password' => $password]);
+                return redirect('/login')->with('success', 'Berhasil Melakukan Reset Password !');
+            }else{
+                return back()->withErrors([
+                    'password' => 'Password not match',
+                ]);
+            }
+        }else{
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ]);
+        }
     }
 
 }

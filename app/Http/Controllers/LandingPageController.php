@@ -6,6 +6,8 @@ use App\Models\Buku;
 use App\Models\Kategori;
 use App\Models\Koleksi;
 use App\Models\Peminjaman;
+use App\Models\RelasiKategori;
+use App\Models\Ulasan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,22 +23,40 @@ class LandingPageController extends Controller
         $user = User::findOrFail(Auth::user()->id);
         $data = Buku::all();
         $koleksi = Koleksi::all();
+        $ulasan = Ulasan::all();
+        $kategori = Kategori::all();
 
         $liked = DB::table('koleksis')
         ->join('users', 'users.id', '=', 'koleksis.id_user')
         ->where('id_user','=',Auth::user()->id)
         ->get();
 
-        return view('landingPage.index', ['user' => $user, 'data' => $data,'liked'=>$liked]);
+        return view('landingPage.index', ['user' => $user, 'data' => $data,'liked'=>$liked, 'koleksi'=>$koleksi, 'ulasan'=>$ulasan, 'kategori'=>$kategori]);
     }
 
-    public function detail()
+    public function index2()
     {
-        $data = Buku::findOrFail();
+        // $user = User::findOrFail(Auth::user()->id);
+        $data = Buku::all();
+        $koleksi = Koleksi::all();
+        $ulasan = Ulasan::all();
         $kategori = Kategori::all();
-        $user = User::findOrFail(Auth::user()->id);
-        return view('landingPage.detail',['data'=>$data, 'kategori'=>$kategori, 'user'=>$user]);
+
+        // $liked = DB::table('koleksis')
+        // ->join('users', 'users.id', '=', 'koleksis.id_user')
+        // ->where('id_user','=',Auth::user()->id)
+        // ->get();
+
+        return view('landingPage.index2', [ 'data' => $data, 'koleksi'=>$koleksi, 'ulasan'=>$ulasan, 'kategori'=>$kategori]);
     }
+
+    // public function detail()
+    // {
+    //     $data = Buku::findOrFail();
+    //     $kategori = Kategori::all();
+    //     $user = User::findOrFail(Auth::user()->id);
+    //     return view('landingPage.detail',['data'=>$data, 'kategori'=>$kategori, 'user'=>$user]);
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -87,9 +107,17 @@ class LandingPageController extends Controller
     public function show(string $id)
     {
         $data = Buku::findOrFail($id);
+        $ulasan = Ulasan::all();
         $kategori = Kategori::all();
         $user = User::findOrFail(Auth::user()->id);
-        return view('landingPage.detail',['data'=>$data, 'kategori'=>$kategori, 'user'=>$user]);
+        $rk = RelasiKategori::all();
+
+        $relasik = DB::table('relasi_kategoris')
+        ->join('bukus', 'bukus.id', '=', 'relasi_kategoris.id_buku')
+        ->where('id_buku','=', Buku::findOrFail($id))
+        ->get();
+
+        return view('landingPage.detail',['data'=>$data, 'ulasan'=>$ulasan, 'kategori'=>$kategori, 'user'=>$user, 'relasik'=>$relasik]);
     }
 
     /**

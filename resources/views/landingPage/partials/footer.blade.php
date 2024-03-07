@@ -1,6 +1,6 @@
 <footer class="main">
     <section class="newsletter p-30 text-white wow fadeIn animated">
-        <div class="container">
+        {{-- <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-7 mb-md-3 mb-lg-0">
                     <div class="row align-items-center">
@@ -24,7 +24,7 @@
                     <!-- End Subscribe Form -->
                 </div>
             </div>
-        </div>
+        </div> --}}
     </section>
     <section class="section-padding footer-mid">
         <div class="container pt-15 pb-20">
@@ -32,15 +32,15 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="widget-about font-md mb-md-5 mb-lg-0">
                         <div class="logo logo-width-1 wow fadeIn animated">
-                            <a href="index.html"><img src="{{ asset('evara') }}/assets/imgs/theme/logo.svg"
+                            <a href="index.html"><img src="{{ asset('evara') }}/assets/imgs/theme/alibraryLogo.png"
                                     alt="logo"></a>
                         </div>
                         <h5 class="mt-20 mb-10 fw-600 text-grey-4 wow fadeIn animated">Contact</h5>
                         <p class="wow fadeIn animated">
-                            <strong>Address: </strong>562 Wellington Road, Street 32, San Francisco
+                            <strong>Address: </strong> Jl. Pemuda No. 4
                         </p>
                         <p class="wow fadeIn animated">
-                            <strong>Phone: </strong>+01 2222 365 /(+91) 01 2345 6789
+                            <strong>Phone: </strong>+62 8133 6317 273
                         </p>
                         <p class="wow fadeIn animated">
                             <strong>Hours: </strong>10:00 - 18:00, Mon - Sat
@@ -75,9 +75,9 @@
                     <h5 class="widget-title wow fadeIn animated">My Account</h5>
                     <ul class="footer-list wow fadeIn animated">
                         <li><a href="#">Sign In</a></li>
-                        <li><a href="#">View Cart</a></li>
+                        {{-- <li><a href="#">View Cart</a></li> --}}
                         <li><a href="#">My Wishlist</a></li>
-                        <li><a href="#">Track My Order</a></li>
+                        {{-- <li><a href="#">Track My Order</a></li> --}}
                         <li><a href="#">Help</a></li>
                         <li><a href="#">Order</a></li>
                     </ul>
@@ -94,11 +94,11 @@
                                         src="{{ asset('evara') }}/assets/imgs/theme/google-play.jpg" alt=""></a>
                             </div>
                         </div>
-                        <div class="col-md-4 col-lg-12 mt-md-3 mt-lg-0">
+                        {{-- <div class="col-md-4 col-lg-12 mt-md-3 mt-lg-0">
                             <p class="mb-20 wow fadeIn animated">Secured Payment Gateways</p>
                             <img class="wow fadeIn animated"
                                 src="{{ asset('evara') }}/assets/imgs/theme/payment-method.png" alt="">
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -110,14 +110,14 @@
                 <div class="footer-bottom"></div>
             </div>
             <div class="col-lg-6">
-                <p class="float-md-left font-sm text-muted mb-0">&copy; 2022, <strong class="text-brand">Evara</strong>
-                    - HTML Ecommerce Template </p>
+                <p class="float-md-left font-sm text-muted mb-0">&copy; 2024, <strong class="text-brand"> ALibrary</strong>
+                    - e-Library </p>
             </div>
-            <div class="col-lg-6">
+            {{-- <div class="col-lg-6">
                 <p class="text-lg-end text-start font-sm text-muted mb-0">
                     Designed by <a href="http://alithemes.com" target="_blank">Alithemes.com</a>. All rights reserved
                 </p>
-            </div>
+            </div> --}}
         </div>
     </div>
 </footer>
@@ -168,6 +168,7 @@
     });
 </script>
 
+{{-- peminjaman --}}
 <script>
     $(document).ready(function() {
         $('#form-cart').submit(function(event) {
@@ -177,6 +178,119 @@
 
             // Mengambil nilai dari elemen <span> dengan kelas 'qty-val'
             var jp = $('#jumlah_peminjaman').text();
+
+            // Menambahkan nilai jp ke dalam data yang akan dikirimkan
+            formData += '&jumlah_peminjaman=' + jp;
+            console.log(formData);
+            $.ajax({
+                url: "{{ route('landingPage.store') }}", // Sesuaikan dengan route Anda
+                method: "POST",
+                data: formData,
+                success: function(response) {
+                    console.log(response);
+                    $('#success-alert').removeClass('d-none');
+                    $('#success-message').text('Berhasil mengajukan pinjaman buku.');
+
+                    // Sembunyikan alert setelah beberapa detik (opsional)
+                    setTimeout(function() {
+                        $('#success-alert').addClass('d-none');
+                    }, 5000); // Sesuaikan dengan kebutuhan Anda
+                    // Tambahkan logika lain di sini, misalnya menampilkan pesan sukses
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                    $('#error-alert').removeClass('d-none');
+                    $('#error-message').text('Stok buku tidak mencukupi.');
+                    // Tambahkan logika untuk menangani kesalahan di sini
+
+                    // Sembunyikan alert setelah beberapa detik (opsional)
+                    setTimeout(function() {
+                        $('#error-alert').addClass('d-none');
+                    }, 5000); // Sesuaikan dengan kebutuhan Anda
+                    // Tambahkan logika lain di sini, misalnya menampilkan pesan sukses
+                }
+            });
+        });
+    });
+</script>
+
+{{-- comment --}}
+{{-- <script>
+    $(document).ready(function() {
+        $('#form-comment').submit(function(event) {
+            event.preventDefault();
+
+            var formData = $(this).serialize();
+
+            $.ajax({
+                url: '{{ route('ulasan.create') }}',
+                method: 'POST',
+                data: formData,
+                success: function(response) {
+                    console.log(response);
+                    $('#success-alert').removeClass('d-none');
+                    $('#success-message').text('Berhasil menambahkan ulasan.');
+
+                    setTimeout(function() {
+                        $('#success-alert').addClass('d-none');
+                    }, 5000);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                    $('#error-alert').removeClass('d-none');
+                    $('#error-message').text('Gagal menambahkan ulasan.');
+
+                    setTimeout(function() {
+                        $('#error-alert').addClass('d-none');
+                    }, 5000);
+                }
+            });
+        });
+    });
+</script> --}}
+
+
+{{-- comment --}}
+ <script>
+    $(document).ready(function() {
+        $('#form-comment').submit(function(event) {
+            event.preventDefault();
+
+            var formData = $(this).serialize();
+
+            // alert(formData);
+            // Mengambil nilai dari elemen <span>
+            // var jp = $('#jumlah_peminjaman').text();
+
+
+                $.ajax({
+                    url: '{{ route('ulasan.store') }}',
+                    method: 'POST',
+                    data: formData,
+                    success: function(response) {
+                    console.log(response);
+                    $('#success-alert').removeClass('d-none');
+                    $('#success-message').text('Berhasil mengajukan pinjaman buku.');
+
+                    // Sembunyikan alert setelah beberapa detik (opsional)
+                    setTimeout(function() {
+                        $('#success-alert').addClass('d-none');
+                    }, 5000); // Sesuaikan dengan kebutuhan Anda
+                    // Tambahkan logika lain di sini, misalnya menampilkan pesan sukses
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                    $('#error-alert').removeClass('d-none');
+                    $('#error-message').text('Stok buku tidak mencukupi.');
+                    // Tambahkan logika untuk menangani kesalahan di sini
+
+                    // Sembunyikan alert setelah beberapa detik (opsional)
+                    setTimeout(function() {
+                        $('#error-alert').addClass('d-none');
+                    }, 5000); // Sesuaikan dengan kebutuhan Anda
+                    // Tambahkan logika lain di sini, misalnya menampilkan pesan sukses
+                }
+                });
 
             // Menambahkan nilai jp ke dalam data yang akan dikirimkan
             formData += '&jumlah_peminjaman=' + jp;
@@ -232,6 +346,8 @@
 </script> --}}
 <!-- LikeBtn.com END -->
 
+
+{{-- main like script --}}
 <script>
     $(document).ready(function() {
         $('.like').on('click', function(e) {
@@ -248,6 +364,8 @@
 
                 // Data yang akan dikirim dalam permintaan AJAX
                 var formData = {
+                    id_user: id_user,
+                    id_buku: id_buku,
                     _token: '{{ csrf_token() }}', // Token CSRF
                 };
                 $.ajax({
@@ -268,10 +386,13 @@
 
                 // Menghapus kelas 'liked' dari tombol
                 $(this).removeClass('liked');
+
                 // Mengubah teks tombol menjadi 'Like'
-                $(this).text('Like');
+                // $(this).text('Like');
+
                 // Mengubah kelas ikon hati menjadi 'fi-rs-heart'
                 $icon.removeClass('fa-solid fa-heart').addClass('fi-rs-heart');
+
             } else {
                 // Jika belum memiliki kelas 'liked', maka melakukan input data
 
@@ -301,8 +422,10 @@
 
                 // Menambahkan kelas 'liked' ke tombol
                 $(this).addClass('liked');
-                // Mengubah teks tombol menjadi 'Unlike'
-                $(this).text('Unlike');
+
+                // // Mengubah teks tombol menjadi 'Unlike'
+                // $(this).text('Unlike');
+
                 // Mengubah kelas ikon hati menjadi 'fa-solid fa-heart'
                 $icon.removeClass('fi-rs-heart').addClass('fa-solid fa-heart');
             }

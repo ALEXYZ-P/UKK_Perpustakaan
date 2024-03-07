@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
+use App\Models\Peminjaman;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -43,11 +46,20 @@ class ProfileController extends Controller
     {
         // Mengambil data pengguna yang sedang login
         $user = User::findOrFail(Auth::user()->id);
+        $peminjaman = Peminjaman::orderBy('created_at','desc')->where('status', 'MENGANTRE')->orWhere('status', 'DIPINJAM')->get();
+        $history = Peminjaman::orderBy('created_at','desc')->where('status', 'DIKEMBALIKAN')->orWhere('status', 'TERLAMBAT')->get();
+        $buku = Buku::all();
+
         $data1 = User::findOrFail(Auth::user()->id);
         $role = $data1->role_menu;
 
+        $pinjam = DB::table('peminjamen')
+        ->join('users', 'users.id', '=', 'peminjamen.id_user')
+        ->where('id_user','=',Auth::user()->id)
+        ->get();
+
         // Mengembalikan view profil dengan data pengguna
-        return view('landingPage.profile',['user' =>$user, 'role_menu'=> $role]);
+        return view('landingPage.profile',['user' =>$user, 'peminjaman' =>$peminjaman, 'history'=>$history, 'buku'=>$buku, 'role_menu'=> $role, 'pinjam' =>$pinjam]);
 
     }
 

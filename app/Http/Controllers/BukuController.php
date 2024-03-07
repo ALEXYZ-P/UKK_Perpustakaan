@@ -162,4 +162,32 @@ class BukuController extends Controller
 
         return redirect('/data/buku')->with('success','Data deleted successfully!');
     }
+
+    public function laporan()
+    {
+        $buku = Buku::all();
+
+        $data1 = User::findOrFail(Auth::user()->id);
+        $role = $data1->role_menu;
+
+        return view('dashboard.data_buku.laporan',['buku'=>$buku,'role_menu'=> $role]);
+    }
+
+    public function cetak(Request $request)
+    {
+        $bulan_tahun = $request->input('bulan_tahun');
+
+        list($bulan, $tahun) = explode('-', $bulan_tahun);
+
+        $results = Buku::whereYear('created_at', $tahun)
+                            ->whereMonth('created_at', $bulan)
+                            ->get();
+        return view('dashboard.pdf.laporan',['data' => $results,'bulan_tahun' => $bulan_tahun]);
+    }
+
+
+
+
+
+
 }

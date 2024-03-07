@@ -8,10 +8,13 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
+                    <a href="#" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="{{ route('logout')}}" class="nav-link">Logout</a>
                 </li>
             </ul>
 
@@ -148,7 +151,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
-                <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                <img src="{{ asset('adminlte') }}/dist/img/alibraryLogo.png" alt="ALibrary Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
                 <span class="brand-text font-weight-light">{{env('APP_NAME')}} </span>
             </a>
@@ -157,11 +160,11 @@
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
+                    {{-- <div class="image">
                         <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                    </div>
+                    </div> --}}
                     <div class="info">
-                        <a href="#" class="d-block">{{ Auth::user()->nama}}</a>
+                        <a href="#" class="d-block"></a>
                     </div>
                 </div>
 
@@ -189,7 +192,7 @@
                         @foreach ($role_menu as $i)
                          @if ($i->akses->menu == "Dashboard")
                             <li class="nav-item menu-open">
-                                <a href="{{ route('dashboard.index')}}" class="nav-link active">
+                                <a href="{{ route('dashboard.index')}}" class="nav-link {{ Route::is('dashboard.index') ? 'active' : ''}}">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
                                         Dashboard
@@ -303,7 +306,7 @@
                         @endforeach
 
                         @foreach ($role_menu as $i)
-                         @if ($i->akses->menu == "Peminjaman")
+                         @if ($i->akses->menu == "Pengembalian")
                         <li class="nav-item">
                             <a href="{{ route('pengembalian.index')}}" class="nav-link {{ Route::is('pengembalian.index') ? 'active' : ''}}">
                                 <i class="nav-icon fas fa-th"></i>
@@ -316,8 +319,10 @@
                         @endif
                         @endforeach
 
+                        @foreach ($role_menu as $i)
+                         @if ($i->akses->menu == "Laporan")
                         <li class="nav-item">
-                            <a href="{{ route('invoice.index') }}" class="nav-link {{ Route::is('invoice.index') ? 'active' : ''}}">
+                            <a href="{{ route('laporan') }}" class="nav-link {{ Route::is('laporan') ? 'active' : ''}}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Laporan
@@ -325,33 +330,35 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('landingPage.index')}}" class="nav-link">
+                        @endif
+                        @endforeach
+                        {{-- <li class="nav-item">
+                            <a href="{{ route('landingPage.index')}}" class="nav-link {{ Route::is('landingPage.index') ? 'active' : ''}}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Landing Page
-                                    {{-- <span class="right badge badge-danger">New</span> --}}
+                                    <span class="right badge badge-danger">New</span>
                                 </p>
                             </a>
-                        </li>
-                        <li class="nav-item">
+                        </li> --}}
+                        {{-- <li class="nav-item">
                             <a href="{{ route('login')}}" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Login
-                                    {{-- <span class="right badge badge-danger">New</span> --}}
+                                    <span class="right badge badge-danger">New</span>
                                 </p>
                             </a>
-                        </li>
-                        <li class="nav-item">
+                        </li> --}}
+                        {{-- <li class="nav-item">
                             <a href="{{ route('logout')}}" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Logout
-                                    {{-- <span class="right badge badge-danger">New</span> --}}
+
                                 </p>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

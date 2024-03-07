@@ -8,6 +8,7 @@ use App\Models\Koleksi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class KoleksiController extends Controller
 {
@@ -61,7 +62,12 @@ class KoleksiController extends Controller
         $buku = Buku::all();
         $kategori = Kategori::all();
 
-        return view('landingPage.liked',['koleksi'=>$koleksi, 'buku'=>$buku, 'kategori'=>$kategori, 'user'=>$user]);
+        $liked = DB::table('koleksis')
+        ->join('users', 'users.id', '=', 'koleksis.id_user')
+        ->where('id_user','=',Auth::user()->id)
+        ->get();
+
+        return view('landingPage.liked',['koleksi'=>$koleksi, 'buku'=>$buku, 'kategori'=>$kategori, 'liked'=>$liked, 'user'=>$user]);
     }
 
     /**
@@ -95,15 +101,35 @@ class KoleksiController extends Controller
 
     public function unlike(Request $request)
     {
-        $id_user = $request->input('id_user');
-        $id_buku = $request->input('id_buku');
-        $koleksi = Koleksi::where(
-            ['id_user', '=', $id_user],
-            ['id_buku', '=', $id_buku],
-        );
-        $koleksi->delete();
 
+        $id_user = $request->input('id_user');
+    $id_buku = $request->input('id_buku');
+
+    // Find the record matching the given id_user and id_buku
+    $koleksi = Koleksi::where([
+        ['id_user', '=', $id_user],
+        ['id_buku', '=', $id_buku],
+    ])->first();
+
+    if ($koleksi) {
+        // If the record exists, delete it
+        $koleksi->delete();
         return response()->json(['success' => true]);
+    } else {
+        // If the record doesn't exist, return an error response
+        return response()->json(['success' => false, 'message' => 'Record not found.']);
+    }
+
+
+        // $id_user = $request->input('id_user');
+        // $id_buku = $request->input('id_buku');
+        // $koleksi = Koleksi::where(
+        //     ['id_user', '=', $id_user],
+        //     ['id_buku', '=', $id_buku],
+        // );
+        // $koleksi->delete();
+
+        // return response()->json(['success' => true]);
 
     }
 }

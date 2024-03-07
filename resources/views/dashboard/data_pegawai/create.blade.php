@@ -1,6 +1,6 @@
 @extends('dashboard.master')
 
-@section('title', 'Daftar Pegawai')
+@section('title', 'Pendaftaran Pegawai')
 @section('content')
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center">
@@ -42,7 +42,7 @@
                             <input type="text" class="form-control" name="username">
 
                             <label for="">NIK</label>
-                            <input type="text" class="form-control" name="nik" id="">
+                            <input type="text" class="form-control" name="nik" id="" minlength="15"  maxlength="16">
 
                             <label for="">Nama</label>
                             <input type="text" class="form-control" name="nama" id="">
@@ -51,13 +51,13 @@
                             <input type="email" class="form-control" name="email" id="">
 
                             <label for="">Password</label>
-                            <input type="password" class="form-control" name="password" id="">
+                            <input type="password" class="form-control" name="password" id="" minlength="8">
 
                             <label for="">Alamat</label>
                             <input type="text" class="form-control" name="alamat" id="">
 
                             <label for="">No Telepon</label>
-                            <input type="text" class="form-control" name="nohp" id="">
+                            <input type="text" class="form-control" name="nohp" id="" minlength="9" minlength="15">
 
                             <label for="">Tanggal Lahir</label>
                             <input type="date" class="form-control" name="tgl_lahir" id="">

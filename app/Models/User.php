@@ -62,6 +62,10 @@ class User extends Authenticatable
         return $this->hasMany(Buku::class,'id_buku','id');
     }
 
+    // public function bukupinjam(){
+    // return $this->belongsToMany(Kategori::class,'paminjaman','id_buku','id_user');
+    // }
+
     public function peminjaman(){
         return $this->hasMany(Peminjaman::class,'id_peminjaman','id');
     }
@@ -71,7 +75,7 @@ class User extends Authenticatable
     }
 
     public function ulasan(){
-        return $this->hasMany(ulasan::class,'id_ulsan','id');
+        return $this->hasMany(Ulasan::class,'id_ulasan','id');
     }
 
 

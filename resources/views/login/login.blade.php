@@ -8,7 +8,9 @@
             <!-- /.login-logo -->
             <div class="card card-outline card-primary">
                 <div class="card-header text-center">
-                    <a href="#" class="h1"><b>{{ env('APP_NAME') }}</b></a>
+                    <a href="index.html"><img src="{{ asset('evara') }}/assets/imgs/theme/alibraryLogo.png"
+                        alt="logo" height="170px"></a>
+                    <p><a href="#" class="h1"><b>{{ env('APP_NAME') }}</b></a></p>
                 </div>
                 <div class="card-body">
                     @if (session('success'))
@@ -70,7 +72,7 @@
                     <!-- /.social-auth-links -->
 
                     <p class="mb-1">
-                        <a href="forgot-password.html">I forgot my password</a>
+                        <a href="{{ route('forget') }}">I forgot my password</a>
                     </p>
                     <p class="mb-0">
                         <a href="{{ route('register') }}" class="text-center">Register a new membership</a>

@@ -58,7 +58,7 @@
                             <input type="text" class="form-control" name="tahun_terbit" id="">
 
                             <label for="">Sinopsis</label>
-                            <input type="text" class="form-control" name="sinopsis" id="">
+                            <textarea class="form-control" name="sinopsis" id="" cols="30" rows="10"></textarea>
 
                             <label for="">Kategori</label>
                             <select name="id_kategori" id="id_kategori" class="form-control">

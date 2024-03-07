@@ -15,7 +15,7 @@ class PengembalianController extends Controller
      */
     public function index()
     {
-        $data = Peminjaman::orderBy('created_at','desc')->where('status', 'DIPINJAM')->orWhere('status', 'DIKEMBALIKAN')->orWhere('status', 'TERLAMBAT')->get();
+        $data = Peminjaman::orderBy('created_at','desc')->where('status', 'DIPINJAM')->orWhere('status', 'TERLAMBAT')->get();
         $user = User::all();
         $data1 = User::findOrFail(Auth::user()->id);
         $role = $data1->role_menu;
